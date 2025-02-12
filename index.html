@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres?</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            color: white;
+        }
+        h1 {
+            font-style: italic;
+            font-size: 36px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .container {
+            position: relative;
+            width: 20vw;
+            height: 60vh;
+            border: 3px dashed white;
+            border-radius: 20px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        button {
+            font-size: 20px;
+            padding: 12px 24px;
+            cursor: pointer;
+            position: absolute;
+            border: none;
+            border-radius: 20px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        button:active {
+            transform: scale(0.9);
+        }
+        button:nth-child(odd) {
+            background-color: #ff69b4;
+            color: white;
+        }
+        button:nth-child(even) {
+            background-color: #ff1493;
+            color: white;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <h1>Moni chip...</h1>
+    <h1>¿Quieres ser mi cita de valetín?</h1>
+    <div class="container">
+        <button onclick="aceptar()" style="left: 40%; top: 40%;">Sí</button>
+        <button onclick="agregarSi()" style="left: 50%; top: 50%;">No</button>
+    </div>
+
+    <script>
+        function aceptar() {
+        Swal.fire({
+            title: 'Fue la mejor opción verdaderamente',
+            text: 'Felicidades amori',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+}
+
+
+        function agregarSi() {
+            const container = document.querySelector(".container");
+            const nuevoBoton = document.createElement("button");
+            nuevoBoton.textContent = "Sí";
+            nuevoBoton.onclick = aceptar;
+
+            // Generar posición aleatoria dentro del contenedor
+            const maxX = container.clientWidth - 100; // Restamos el tamaño del botón
+            const maxY = container.clientHeight - 50;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            nuevoBoton.style.left = `${randomX}px`;
+            nuevoBoton.style.top = `${randomY}px`;
+
+            container.appendChild(nuevoBoton);
+        }
+    </script>
+
+</body>
+</html>
