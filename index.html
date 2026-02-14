@@ -1,99 +1,190 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¿Quieres?</title>
-    <style>
-        body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-            background: linear-gradient(to right, #ff9a9e, #fad0c4);
-            color: white;
-        }
-        h1 {
-            font-style: italic;
-            font-size: 36px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        .container {
-            position: relative;
-            width: 20vw;
-            height: 60vh;
-            border: 3px dashed white;
-            border-radius: 20px;
-            margin: auto;
-            overflow: hidden;
-            position: relative;
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-        }
-        button {
-            font-size: 20px;
-            padding: 12px 24px;
-            cursor: pointer;
-            position: absolute;
-            border: none;
-            border-radius: 20px;
-            transition: 0.3s;
-            font-weight: bold;
-        }
-        button:hover {
-            transform: scale(1.1);
-        }
-        button:active {
-            transform: scale(0.9);
-        }
-        button:nth-child(odd) {
-            background-color: #ff69b4;
-            color: white;
-        }
-        button:nth-child(even) {
-            background-color: #ff1493;
-            color: white;
-        }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
-<body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Ti 💖</title>
 
-    <h1>Moni chip...</h1>
-    <h1>¿Quieres ser mi cita de valetín?</h1>
-    <div class="container">
-        <button onclick="aceptar()" style="left: 40%; top: 40%;">Sí</button>
-        <button onclick="agregarSi()" style="left: 50%; top: 50%;">No</button>
-    </div>
-
-    <script>
-        function aceptar() {
-        Swal.fire({
-            title: 'Fue la mejor opción verdaderamente',
-            text: 'Felicidades amori',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        });
+<style>
+body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive;
+    background: linear-gradient(to bottom, #ffe6f0, #ffd6eb);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
+h1 {
+    color: #ff4da6;
+    text-shadow: 2px 2px 8px #ff99cc;
+    margin-bottom: 30px;
+}
 
-        function agregarSi() {
-            const container = document.querySelector(".container");
-            const nuevoBoton = document.createElement("button");
-            nuevoBoton.textContent = "Sí";
-            nuevoBoton.onclick = aceptar;
+.bouquet {
+    position: relative;
+    width: 320px;
+    height: 420px;
+}
 
-            // Generar posición aleatoria dentro del contenedor
-            const maxX = container.clientWidth - 100; // Restamos el tamaño del botón
-            const maxY = container.clientHeight - 50;
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
+/* 🌸 Flor */
+.flower {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
 
-            nuevoBoton.style.left = `${randomX}px`;
-            nuevoBoton.style.top = `${randomY}px`;
+.flower:hover {
+    transform: scale(1.15) rotate(5deg);
+}
 
-            container.appendChild(nuevoBoton);
-        }
-    </script>
+/* pétalos */
+.petal {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle at 30% 30%, #ffb3d9, #ff66b2);
+    border-radius: 50%;
+    box-shadow: inset -3px -3px 6px rgba(0,0,0,0.1);
+}
+
+.petal:nth-child(1) { top: 0; left: 20px; }
+.petal:nth-child(2) { top: 20px; left: 0; }
+.petal:nth-child(3) { top: 20px; left: 40px; }
+.petal:nth-child(4) { top: 40px; left: 20px; }
+
+/* centro */
+.center {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: radial-gradient(circle, #fff176, #ffcc00);
+    border-radius: 50%;
+    top: 28px;
+    left: 28px;
+    box-shadow: 0 0 10px #fff176;
+}
+
+/* tallo */
+.stem {
+    position: absolute;
+    width: 6px;
+    height: 130px;
+    background: linear-gradient(to bottom, #66bb6a, #2e7d32);
+    border-radius: 3px;
+}
+
+/* hojas */
+.leaf {
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    background: #4CAF50;
+    border-radius: 50% 0;
+}
+
+/* mensaje */
+.message {
+    margin-top: 20px;
+    background: white;
+    padding: 15px 25px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: none;
+    max-width: 300px;
+    text-align: center;
+    color: #ff4da6;
+    font-size: 18px;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<h1> Te amo  🌸</h1>
+
+<div class="bouquet">
+
+    <!-- 🌸 Flor 1 -->
+    <div class="flower" style="top: 0; left: 115px;" onclick="showMessage(0)">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="center"></div>
+    </div>
+    <div class="stem" style="top: 80px; left: 155px;"></div>
+
+    <!-- 🌸 Flor 2 -->
+    <div class="flower" style="top: 70px; left: 30px;" onclick="showMessage(1)">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="center"></div>
+    </div>
+    <div class="stem" style="top: 150px; left: 70px;"></div>
+
+    <!-- 🌸 Flor 3 -->
+    <div class="flower" style="top: 70px; left: 200px;" onclick="showMessage(2)">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="center"></div>
+    </div>
+    <div class="stem" style="top: 150px; left: 240px;"></div>
+
+    <!-- 🌸 Flor 4 -->
+    <div class="flower" style="top: 140px; left: 80px;" onclick="showMessage(3)">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="center"></div>
+    </div>
+    <div class="stem" style="top: 220px; left: 120px;"></div>
+
+    <!-- 🌸 Flor 5 -->
+    <div class="flower" style="top: 140px; left: 170px;" onclick="showMessage(4)">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="center"></div>
+    </div>
+    <div class="stem" style="top: 220px; left: 210px;"></div>
+
+</div>
+
+<div class="message" id="messageBox"></div>
+
+<script>
+const messages = [
+    "No es el día que te encantaría pero lo hice con mucho amor",
+    "Quiero pasar un día especial contigo 🌷",
+    "Eres la razón por la cual este día es especial 💖",
+    "Quiero que seas mi cita 🌸",
+    "¿Aceptarías ser mi valetine's date? 💌"
+];
+
+function showMessage(index) {
+    const box = document.getElementById("messageBox");
+    box.innerText = messages[index];
+    box.style.display = "block";
+}
+</script>
 
 </body>
 </html>
